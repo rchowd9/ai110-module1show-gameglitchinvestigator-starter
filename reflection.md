@@ -17,9 +17,9 @@ Document at least 3 bugs you found. Add rows as needed.
 
 | Input | Expected Behavior | Actual Behavior | Console Output / Error |
 |-------|-------------------|-----------------|------------------------|
-| Clicking on ''Start New Game''| The game starts, attempts restart, and chooses a secret number| The game crashes and fails to restart| No such file|
-| Guessing 94| ''Go LOWER''| ''Go HIGHER''| Inverted error|
-| Guessing 15| ''Go HIGHER''| Go LOWER''| Inverted error|
+| Clicking on "Start New Game"| The game starts, attempts restart, and chooses a secret number| The game crashes and fails to restart| No such file|
+| Guessing 94| "Go LOWER'"| "Go HIGHER"| Inverted error|
+| Guessing 15| "Go HIGHER"| "Go LOWER"| Inverted error|
 
 ---
 
