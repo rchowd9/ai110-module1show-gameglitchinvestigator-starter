@@ -8,15 +8,18 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 - List at least two concrete bugs you noticed at the start  
   (for example: "the hints were backwards").
 
+  - I am unable to start a new game
+  - the hints were backwards
+
 **Bug Reproduction Log**
 
 Document at least 3 bugs you found. Add rows as needed.
 
 | Input | Expected Behavior | Actual Behavior | Console Output / Error |
 |-------|-------------------|-----------------|------------------------|
-| | | | |
-| | | | |
-| | | | |
+| Clicking on ''Start New Game''| The game starts, attempts restart, and chooses a secret number| The game crashes and fails to restart| No such file|
+| Guessing 94| ''Go LOWER''| ''Go HIGHER''| Inverted error|
+| Guessing 15| ''Go HIGHER''| Go LOWER''| Inverted error|
 
 ---
 
