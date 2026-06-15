@@ -133,6 +133,7 @@ with col3:
 
 if new_game:
     st.session_state.attempts = 0
+    # FIXME: instead of hardcoded 1, 100 use get_range_for_difficulty(difficulty)
     st.session_state.secret = random.randint(1, 100)
     st.success("New game started.")
     st.rerun()
@@ -154,6 +155,8 @@ if submit:
         st.error(err)
     else:
         st.session_state.history.append(guess_int)
+        # FIXME: Comparing string secret to int guess causes a TypeError,
+        # which causes a fallback in check_guess
 
         if st.session_state.attempts % 2 == 0:
             secret = str(st.session_state.secret)
