@@ -8,8 +8,11 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 - List at least two concrete bugs you noticed at the start  
   (for example: "the hints were backwards").
 
-  - I am unable to start a new game
-  - the hints were backwards
+  When I first ran the app, the UI seemed to be functional on the surface, but the core gameplay was brokena nd unpredictable. The game felt impossible to play because it gave me wrong feedback and crashed.
+
+  Two bugs that stood out to me:
+  * **The New Game Crash:** Tapping the "Start New Game" button immediately threw a file system error and broke the session instead of resetting everything.
+  * **Backwards Hints:** The high/low logic was completely inverted; guessing a number higher than the secret told me to go higher, and guessing lower told me to go lower.
 
 **Bug Reproduction Log**
 
@@ -38,11 +41,15 @@ Document at least 3 bugs you found. Add rows as needed.
   and what it showed you about your code.
 - Did AI help you design or understand any tests? How?
 
+To make sure a bug was actually dead and gone, I paired manual testing in the browser with automated terminal runs. For instance, I ran `python -m pytest` in the terminal to trigger the test suite inside the `tests/` folder. Seeing all seven unit tests come back fully green proved that my refactored math logic inside `logic_utils.py` was holding up perfectly across all edge cases. The AI was super helpful here because it helped me break down exactly what the pre-written unit tests were looking for, making it easy to understand the expected parameters for scores and dynamic difficulty limits without having to guess.
+
 ---
 
 ## 4. What did you learn about Streamlit and state?
 
 - How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit?
+
+The easiest way to explain Streamlit to a friend is to imagine it like a flipbook that completely redraws the entire page from top to bottom every single time you interact with it—like clicking a button or moving a slider. Because it runs the script over and over from scratch, standard Python variables completely wipe out and reset every single time you click anything. Session state is basically like putting a sticky note on the back of that flipbook; it allows the app to remember data (like your current score or total attempts) across those constant page redraws so you don't lose your progress.
 
 ---
 
@@ -52,3 +59,5 @@ Document at least 3 bugs you found. Add rows as needed.
   - This could be a testing habit, a prompting strategy, or a way you used Git.
 - What is one thing you would do differently next time you work with AI on a coding task?
 - In one or two sentences, describe how this project changed the way you think about AI generated code.
+
+Moving forward, I'm definitely going to keep up the habit of running tests via `python -m pytest` and keeping my logic separated into clean modules like `logic_utils.py` to enforce a solid separation of concerns. Next time I work with AI, I plan to ask it for targeted code traces to explain errors rather than letting it suggest massive, sweeping code overrides that clutter the architecture. This project really changed how I think about AI-generated code; it proved to me that even if an AI gives you a visually stunning, polished UI, the underlying math can still be full of hidden traps that require a human developer to audit and fix.
