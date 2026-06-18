@@ -32,6 +32,8 @@ Document at least 3 bugs you found. Add rows as needed.
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
 
+I used Gemini and VS Code's integrated AI assistant as my programming partners for this project. A great example of the AI helping out was when it pinpointed a tricky type-coercion flaw, showing me that the secret number was being converted into a string on alternating turns and breaking normal integer comparisons. I verified it by checking the terminal outputs and watching the `TypeError` messages vanish once we forced both values to strictly remain integers. On the flip side, the AI completely sent me down a rabbit hole early on when it tried to fix my test file pathway failures by completely rewriting my source code logic. I caught the mistake by looking closely at the terminal stack trace, realizing it was just a local module resolution issue, and fixed it myself using `python -m pytest` instead of altering any application code.
+
 ---
 
 ## 3. Debugging and testing your fixes
