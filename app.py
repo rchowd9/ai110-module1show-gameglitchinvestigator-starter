@@ -1,6 +1,8 @@
 import random
 import streamlit as st
 
+from logic_utils import load_high_scores, update_high_scores, save_high_scores
+
 def get_range_for_difficulty(difficulty: str):
     if difficulty == "Easy":
         return 1, 20
@@ -88,6 +90,14 @@ low, high = get_range_for_difficulty(difficulty)
 
 st.sidebar.caption(f"Range: {low} to {high}")
 st.sidebar.caption(f"Attempts allowed: {attempt_limit}")
+
+st.sidebar.divider()
+st.sidebar.subheader("🏆 High Scores")
+high_scores = load_high_scores()
+for diff_name in ["Easy", "Normal", "Hard"]:
+    best = high_scores.get(diff_name)
+    medal = "👑 " if diff_name == difficulty else ""
+    st.sidebar.write(f"{medal}{diff_name}: {best if best is not None else '—'}")
 
 if "secret" not in st.session_state:
     st.session_state.secret = random.randint(low, high)
@@ -181,6 +191,14 @@ if submit:
                 f"You won! The secret was {st.session_state.secret}. "
                 f"Final score: {st.session_state.score}"
             )
+            updated, is_record = update_high_scores(
+                load_high_scores(), difficulty, st.session_state.score
+            )
+            if is_record:
+                save_high_scores(updated)
+                st.success(
+                    f"🏆 New {difficulty} high score: {st.session_state.score}!"
+                )
         else:
             if st.session_state.attempts >= attempt_limit:
                 st.session_state.status = "lost"
@@ -189,6 +207,15 @@ if submit:
                     f"The secret was {st.session_state.secret}. "
                     f"Score: {st.session_state.score}"
                 )
+                # A run can end in a loss but still beat the stored best.
+                updated, is_record = update_high_scores(
+                    load_high_scores(), difficulty, st.session_state.score
+                )
+                if is_record:
+                    save_high_scores(updated)
+                    st.success(
+                        f"🏆 New {difficulty} high score: {st.session_state.score}!"
+                    )
 
 st.divider()
 st.caption("Built by an AI that claims this code is production-ready.")
