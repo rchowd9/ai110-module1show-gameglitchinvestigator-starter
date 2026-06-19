@@ -2,6 +2,8 @@
 
 > **Stretch features only.** Only fill in the sections that apply to stretch features you attempted. If you did not attempt a stretch feature, leave its section blank or delete it. This file is not required for the core project.
 
+Challenge 1: Advanced Edge-Case Testing
+
 ---
 
 ## Agent Workflow (SF8)
@@ -28,9 +30,9 @@
 
 | Edge Case | Prompt Used | AI-Suggested Test | Did It Pass? | Your Reasoning |
 |-----------|-------------|-------------------|--------------|----------------|
-| | | | | |
-| | | | | |
-| | | | | |
+| **Type-Mismatched Arguments**| Identify three potential edge case inputs that might still break the game and then generate a suite of pytest cases that verify the game handles these inputs gracefully.| test_check_guess_string_secret_does_not_raise| Yes it passed| `app.py` passes the secret as a string on even turns, which breaks the logic and crashes the game unless the utility function strictly handles the type cast.|
+| **Non-Finite / Overflowing Strings**| Identify three potential edge case inputs that might still break the game and then generate a suite of pytest cases that verify the game handles these inputs gracefully.| `test_parse_guess_rejects_non_finite_input`| Yes it passed| If a user inputs infinity (`inf` or `1e999`), it bypasses regular number validation and throws an unhandled `OverflowError` right into the user's face.|
+| **Non-Integer Decimals**| Identify three potential edge case inputs that might still break the game and then generate a suite of pytest cases that verify the game handles these inputs gracefully.| test_parse_guess_rejects_non_integer_decimals`| Yes it passed| Typing a decimal like `50.9` would get silently chopped down to `50` by `int()`, giving players a confusing experience or a cheap, unearned win.|
 
 ---
 

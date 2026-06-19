@@ -66,15 +66,16 @@ Describe your fixed game in numbered steps so a reader can follow along without 
 ```
 
 ```
-============================= test session starts =============================
+========================================================================================== test session starts ===========================================================================================
 platform win32 -- Python 3.14.3, pytest-9.0.3, pluggy-1.6.0
 rootdir: C:\Users\Home\Downloads\Game-Glitch\ai110-module1show-gameglitchinvestigator-starter
 plugins: anyio-4.13.0
-collected 7 items                                                              
+collected 29 items                                                                                                                                                                                        
 
-tests\test_game_logic.py .......                                         [100%]
+tests\test_edge_cases.py ......................                                                                                                                                                     [ 75%]
+tests\test_game_logic.py .......                                                                                                                                                                    [100%]
 
-============================== 7 passed in 0.16s ==============================
+=========================================================================================== 29 passed in 0.20s ===========================================================================================
 ```
 
 ## 🚀 Stretch Features
